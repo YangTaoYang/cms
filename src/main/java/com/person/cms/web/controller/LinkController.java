@@ -1,0 +1,29 @@
+package com.person.cms.web.controller;
+
+import com.person.cms.bean.Link;
+import com.person.cms.service.ILinkService;
+import com.person.cms.util.Message;
+import com.person.cms.util.MessageUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Description;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/link")
+@Api(description  = "链接管理")
+public class LinkController {
+
+    @Autowired
+    private ILinkService linkService;
+
+    @PostMapping("/add")
+    @ApiOperation("添加链接")
+    public Message addLink(Link link) {
+        linkService.addLink(link);
+        return MessageUtil.success();
+    }
+}
